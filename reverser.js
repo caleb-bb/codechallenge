@@ -3,9 +3,9 @@ function is_letter(character) {
     return character.match(re)
 }
 
-function replace_punctuation(word, reversed_word) {
+function reverse_word(word) {
     let normal_list = word.split('')
-    let reversed_list = reversed_word.split('').filter(x => is_letter(x))
+    let reversed_list = reverse_letters(word).split('').filter(x => is_letter(x))
 
     for(let i = 0; i < normal_list.length; i++){
         if (!is_letter(word[i])) {
@@ -15,11 +15,10 @@ function replace_punctuation(word, reversed_word) {
     return reversed_list.join('')
 }
 
-function reverse_word(word) {
+function reverse_letters(word) {
     var reversed = word.split('').reverse().join('')
     if (reversed.slice(-1) == reversed.slice(-1).toUpperCase()) {
-        let lowercased = reversed.toLowerCase()
-        return lowercased.slice(0,1).toUpperCase() + lowercased.substring(1)
+        return reversed.slice(0,1).toUpperCase() + reversed.substring(1).toLowerCase()
     }
     return reversed
 }
@@ -28,7 +27,7 @@ function reverse_sentence(sentence, begin_at = 1) {
     split_sentence = sentence.split(' ')
     return split_sentence.map(function(element, index){
         if (index % 2 == begin_at){
-            return replace_punctuation(element, reverse_word(element))
+            return reverse_word(element)
         }
         else {
             return element
@@ -37,4 +36,5 @@ function reverse_sentence(sentence, begin_at = 1) {
 
 
 exports.reverse_word = reverse_word
+exports.reverse_letters = reverse_letters
 exports.reverse_sentence = reverse_sentence

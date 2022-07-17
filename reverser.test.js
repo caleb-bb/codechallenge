@@ -24,7 +24,7 @@ test('reverse_sentence should reverse every other word in a sentence while prese
     }
 )
 
-test('reverse_word should have punctuation in the same place as before', () =>
+test('reverse_sentence should have punctuation in the same place as before', () =>
     {
         expect(reverser.reverse_sentence("Hi! My na1me i3s... Paul!")).toBe("Hi! Ym na1me s3i... Paul!");
     }
