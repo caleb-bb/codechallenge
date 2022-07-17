@@ -24,10 +24,10 @@ function reverse_word(word) {
     return reversed
 }
 
-function reverse_sentence(sentence) {
+function reverse_sentence(sentence, begin_at = 1) {
     split_sentence = sentence.split(' ')
     return split_sentence.map(function(element, index){
-        if (index % 2 != 0){
+        if (index % 2 == begin_at){
             return replace_punctuation(element, reverse_word(element))
         }
         else {
