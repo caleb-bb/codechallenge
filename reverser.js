@@ -12,7 +12,7 @@ function replace_punctuation(word, reversed_word) {
             let deleted_array = reversed_list.splice(i,0,normal_list[i])
         }
     }
-    reversed_word = reversed_list.join
+    return reversed_list.join('')
 }
 
 function reverse_word(word) {
@@ -28,7 +28,7 @@ function reverse_sentence(sentence) {
     split_sentence = sentence.split(' ')
     return split_sentence.map(function(element, index){
         if (index % 2 != 0){
-            return reverse_word(element)
+            return replace_punctuation(element, reverse_word(element))
         }
         else {
             return element
