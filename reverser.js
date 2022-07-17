@@ -1,5 +1,18 @@
-function hello() {
-    return "Hello, world!"
+function is_letter(character) {
+    let re = /[a-zA-Z]/
+    return character.match(re)
+}
+
+function replace_punctuation(word, reversed_word) {
+    let normal_list = word.split('')
+    let reversed_list = reversed_word.split('').filter(x => is_letter(x))
+
+    for(let i = 0; i < normal_list.length; i++){
+        if (!is_letter(word[i])) {
+            let deleted_array = reversed_list.splice(i,0,normal_list[i])
+        }
+    }
+    reversed_word = reversed_list.join
 }
 
 function reverse_word(word) {
@@ -23,6 +36,5 @@ function reverse_sentence(sentence) {
 }
 
 
-exports.hello = hello
 exports.reverse_word = reverse_word
 exports.reverse_sentence = reverse_sentence

@@ -20,6 +20,12 @@ test('reverse_word should preserve capitalization', () =>
 
 test('reverse_sentence should reverse every other word in a sentence while preserving capitalization', () =>
     {
-        expect(reverser.reverse_sentence("The quick brown Fox jumps over the lazy Dog")).toBe("The kciuq brown Xof jumps revo the yzal Dog");
+        expect(reverser.reverse_sentence("the quick brown fox jumps over the lazy dog")).toBe("the kciuq brown xof jumps revo the yzal dog");
+    }
+)
+
+test('reverse_word should have punctuation in the same place as before', () =>
+    {
+        expect(reverser.reverse_sentence("Hi! My name is... Paul!")).toBe("Hi! Ym name si... Paul!");
     }
 )
