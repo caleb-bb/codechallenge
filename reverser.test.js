@@ -35,3 +35,22 @@ test('reverse_sentence can start at index 0', () =>
         expect(reverser.reverse_sentence("The quick brown Fox jumps over the lazy dog", 0)).toBe("Eht quick nworb Fox spmuj over eht lazy god");
     }
 )
+
+test('return empty string for empty string', () =>
+    {
+        expect(reverser.reverse_sentence("")).toBe("");
+    }
+)
+
+
+test('works on German', () =>
+    {
+        expect(reverser.reverse_sentence("Übermensch: was mich nicht umbringt, macht mich stärker.")).toBe("Übermensch: saw mich thcin umbringt, thcam mich rekräts.");
+    }
+)
+
+test('works on German with second index and switches capital umlauts', () =>
+    {
+        expect(reverser.reverse_sentence("Übermensch: was mich nicht umbringt, macht mich stärker.", 0)).toBe("Hcsnemrebü: was hcim nicht tgnirbmu, macht hcim stärker.");
+    }
+)

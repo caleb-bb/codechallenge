@@ -1,12 +1,13 @@
 function is_letter(character) {
-    let re = /[a-zA-Z]/
+    let re = /\p{Letter}/gu
     return character.match(re)
 }
 
 function reverse_word(word) {
     let normal_list = word.split('')
-    let reversed_list = reverse_letters(word).split('').filter(x => is_letter(x))
+    let reversed_list = reverse_letters(word).split('')
 
+    //loop to re-insert punctuation/numbers from original word
     for(let i = 0; i < normal_list.length; i++){
         if (!is_letter(word[i])) {
             let deleted_array = reversed_list.splice(i,0,normal_list[i])
@@ -15,22 +16,25 @@ function reverse_word(word) {
     return reversed_list.join('')
 }
 
+//reverse just the letters, punctuation/numbers reinserted later
 function reverse_letters(word) {
-    var reversed = word.split('').reverse().join('')
-    if (reversed.slice(-1) == reversed.slice(-1).toUpperCase()) {
-        return reversed.slice(0,1).toUpperCase() + reversed.substring(1).toLowerCase()
+    var reversed_letters_only = word.split('').reverse().filter(x => is_letter(x)).join('')
+    let final_letter = reversed_letters_only.slice(-1)
+
+    if (final_letter == final_letter.toUpperCase()) {
+        return reversed_letters_only.slice(0,1).toUpperCase() + reversed_letters_only.substring(1).toLowerCase()
     }
-    return reversed
+    return reversed_letters_only
 }
 
 function reverse_sentence(sentence, begin_at = 1) {
     split_sentence = sentence.split(' ')
-    return split_sentence.map(function(element, index){
+    return split_sentence.map(function(word, index){
         if (index % 2 == begin_at){
-            return reverse_word(element)
+            return reverse_word(word)
         }
         else {
-            return element
+            return word
         }}).join(' ')
 }
 
